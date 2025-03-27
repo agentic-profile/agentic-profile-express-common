@@ -1,18 +1,26 @@
 import {
-    OkPacket
-} from "mysql2";
-import pool from "./mysql-pool.js";
+    OkPacket,
+    Pool
+} from "mysql2/promise";
+import { createPool } from "./mysql-pool.js";
 import { ServerError } from "../net.js";
 
-export { pool }
+
+let connectionPool: Pool;
+
+export function pool(): Pool {
+    if( !connectionPool )
+        connectionPool = createPool();
+    return connectionPool;
+}
 
 export async function queryResult( sql: string, params?: any[] ) {
-    const [ result ] = await pool.query( sql, params );
+    const [ result ] = await pool().query( sql, params );
     return result as OkPacket;
 }
 
 export async function queryRows<T>( sql: string, params?: any[] ) {
-    const [ result ] = await pool.query( sql, params );
+    const [ result ] = await pool().query( sql, params );
     return result as T[];
 }
 
