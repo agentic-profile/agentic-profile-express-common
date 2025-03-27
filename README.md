@@ -1,2 +1,3 @@
-# agentic-profile-express-common
-Common utilities for Express based services
+# Agentic Profile Express Common
+
+Common tools for Express based services
