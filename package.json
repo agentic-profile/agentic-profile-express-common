@@ -1,13 +1,13 @@
 {
   "name": "@agentic-profile/express-common",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Common tools for Express based services",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "prepare": "tsup --external ./src/storage/handle",
-    "dev": "yarn build; node --inspect index.local.js",
-    "build": "tsup --external ./src/storage/handle",
+    "prepare": "tsup",
+    "dev": "yarn build; node --inspect index.js",
+    "build": "tsup",
     "test": "jest"
   },
   "exports": {
@@ -33,6 +33,7 @@
   "homepage": "https://github.com/agentic-profile/agentic-profile-express-common#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
     "express": "^4.21.1",
     "morgan": "^1.10.0",
     "mysql2": "^3.12.0"
