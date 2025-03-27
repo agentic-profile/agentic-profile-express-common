@@ -3,7 +3,7 @@ import {
     Pool
 } from "mysql2/promise";
 import { createPool } from "./mysql-pool.js";
-import { ServerError } from "../net.js";
+import { ServerError } from "../error.js";
 
 
 let connectionPool: Pool;
