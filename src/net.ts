@@ -14,3 +14,7 @@ export const asyncHandler = (fn: AsyncMiddleware) => function( req: Request, res
         signalError(req,res,err);
     });
 }
+
+export function baseUrl( req: Request ) {
+    return (req.protocol + "://" + req.get('host')).toLowerCase();
+}

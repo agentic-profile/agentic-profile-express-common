@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { prettyJSON } from "./util.js";
+
 
 export function log( req: Request, failure: any, err?: any ) {
     const auth = (req as any).auth;
@@ -22,4 +22,8 @@ export function logAxiosResult( axiosResult: any ) {
     const response = { status, data };
 
     console.log( "HTTP summary:", prettyJSON({ request, response }) );
+}
+
+export function prettyJSON(obj:any) {
+    return JSON.stringify(obj,null,4);
 }
