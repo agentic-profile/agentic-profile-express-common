@@ -1,4 +1,4 @@
-import axios from "axios";
+import fetch from 'cross-fetch';
 import {
     Base64Url,
     JWKSet,
@@ -113,14 +113,13 @@ type SendAuthorizedPayloadParams = {
 }
 
 export async function sendAuthorizedPayload({ method = "PUT", url, authToken, payload }: SendAuthorizedPayloadParams) {
-    const config = {
+    return fetch( url, {
+        method,
         headers: {
-            Authorization: 'Agentic ' + authToken
-        }
-    }
-
-    if (method === "POST")
-        return axios.post( url, payload, config );
-    else
-        return axios.put( url, payload, config );
+            "Authorization": 'Agentic ' + authToken,
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+        },
+        body: JSON.stringify( payload )
+    });
 }

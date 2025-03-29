@@ -2,7 +2,7 @@ import {
     Request, 
     Response
 } from "express";
-import { inherits } from "util";
+//import { inherits } from "util";
 
 import { log } from "./log.js";
 
@@ -50,4 +50,4 @@ export class ServerError extends Error {
 }
 
 // Ensure proper inheritance of Error class in older environments
-inherits(ServerError, Error);
+//inherits(ServerError, Error);

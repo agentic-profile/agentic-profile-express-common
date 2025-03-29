@@ -14,7 +14,7 @@ describe("Agentic Profile Test", () => {
     		{ type:"presence", url:"http://example.com/locations" },
     		{ type:"chat", url:"http://example.com/chats" },
     	];
-    	const { profile, keyring} = await createAgenticProfile({ services });
+    	const { profile, keyring } = await createAgenticProfile({ services });
         expect( profile.id ).toBe( "TBD" );
 
         const dir = join( os.homedir(), ".agentic", "iam", "alpha" );
