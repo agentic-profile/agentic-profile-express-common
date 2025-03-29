@@ -1,4 +1,5 @@
 import { Request } from "express";
+import { prettyJSON } from "@agentic-profile/common";
 
 
 export function log( req: Request, failure: any, err?: any ) {
@@ -13,6 +14,7 @@ export function log( req: Request, failure: any, err?: any ) {
     }) );
 }
 
+/*
 export function logAxiosResult( axiosResult: any ) {
     const { config, status } = axiosResult;
     const data = axiosResult.data ?? axiosResult.response?.data;
@@ -22,8 +24,4 @@ export function logAxiosResult( axiosResult: any ) {
     const response = { status, data };
 
     console.log( "HTTP summary:", prettyJSON({ request, response }) );
-}
-
-export function prettyJSON(obj:any) {
-    return JSON.stringify(obj,null,4);
-}
+}*/

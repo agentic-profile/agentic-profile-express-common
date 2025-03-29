@@ -2,6 +2,7 @@ import { VerificationMethod } from "did-resolver";
 import {
     AgenticProfile,
     AgentService,
+    prettyJSON
 } from "@agentic-profile/common";
 import {
     createEdDsaJwk,
@@ -10,7 +11,7 @@ import {
 
 import { join } from "path";
 import { mkdir, readFile, writeFile } from "fs/promises";
-import { prettyJSON } from "./log.js";
+
 
 type ProfileTemplate = {
     name?: string

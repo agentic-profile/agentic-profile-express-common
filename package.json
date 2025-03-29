@@ -1,6 +1,6 @@
 {
   "name": "@agentic-profile/express-common",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Common tools for Express based services",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/agentic-profile/agentic-profile-express-common#readme",
   "dependencies": {
-    "@agentic-profile/auth": "^0.4.1",
+    "@agentic-profile/auth": "^0.4.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.1",

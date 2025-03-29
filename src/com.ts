@@ -1,4 +1,3 @@
-import fetch from 'cross-fetch';
 import {
     Base64Url,
     JWKSet,

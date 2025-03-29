@@ -2,20 +2,19 @@
 # yarn lockfile v1
 
 
-"@agentic-profile/auth@^0.4.1":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@agentic-profile/auth/-/auth-0.4.1.tgz#7ef8995429b5d42f9d635ce19b8c52e13a0089d4"
-  integrity sha512-gnOafcQZT/RLnrQCOm+iNHQBxzf9qTlqZ/YO4VDPxI+C7Y5yZYZYYbbVeX1Wt9cnHo1ZwoYjFRWq9UMI25NQ2w==
+"@agentic-profile/auth@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@agentic-profile/auth/-/auth-0.4.2.tgz#95874ddfcd3b313e0dad34e5b4476b2e3acb42de"
+  integrity sha512-ux8l8IhSmsPR8Qe7di0t1jguDdNJq7mdEqJx9t6442M+8SYGuuzf5EYwqQqPfitApBGwMbidccCIvbGm9DScAg==
   dependencies:
-    "@agentic-profile/common" "^0.4.1"
+    "@agentic-profile/common" "^0.4.2"
     "@noble/ed25519" "^2.2.3"
 
-"@agentic-profile/common@^0.4.1":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@agentic-profile/common/-/common-0.4.1.tgz#0ceeced4026f8cea89ce427cca4f58cca0aee8c0"
-  integrity sha512-wcMcEHIOfzJcMDc06NN9QGhjcXiibEEqQ8mo6llRsKcwLCortaY/+XB6Pa+lQ0Vv2jX7Z58SpjeXtEFrwPEKJA==
+"@agentic-profile/common@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@agentic-profile/common/-/common-0.4.2.tgz#740175fe288d15f72ca03b05d9afdda54443b15a"
+  integrity sha512-WfkuydTe3tpGnpCeAa4fLCLbgfsW6cjFb/Zgl29qsW4XU4izB8dE7KOLoOy7d98UhumAciaY8veO77SZszDbwA==
   dependencies:
-    cross-fetch "^4.1.0"
     did-resolver "^4.1.0"
 
 "@ampproject/remapping@^2.2.0":
@@ -2118,13 +2117,6 @@ create-require@^1.1.0:
   resolved "https://registry.yarnpkg.com/create-require/-/create-require-1.1.1.tgz#c1d7e8f1e5f6cfc9ff65f9cd352d37348756c333"
   integrity sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==
 
-cross-fetch@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-4.1.0.tgz#8f69355007ee182e47fa692ecbaa37a52e43c3d2"
-  integrity sha512-uKm5PU+MHTootlWEY+mZ4vvXoCn4fLQxT9dSc1sXVMSFkINTJVN8cAQROpwcKm8bJ/c7rgZVIBWzH5T78sNZZw==
-  dependencies:
-    node-fetch "^2.7.0"
-
 cross-spawn@^7.0.3, cross-spawn@^7.0.6:
   version "7.0.6"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.6.tgz#8a58fe78f00dcd70c370451759dfbfaf03e8ee9f"
@@ -3411,13 +3403,6 @@ negotiator@0.6.3:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.3.tgz#58e323a72fedc0d6f9cd4d31fe49f51479590ccd"
   integrity sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==
 
-node-fetch@^2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.7.0.tgz#d0f0fa6e3e2dc1d27efcd8ad99d550bda94d187d"
-  integrity sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==
-  dependencies:
-    whatwg-url "^5.0.0"
-
 node-int64@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"
@@ -4112,11 +4097,6 @@ tr46@^1.0.1:
   dependencies:
     punycode "^2.1.0"
 
-tr46@~0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
-  integrity sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==
-
 tree-kill@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/tree-kill/-/tree-kill-1.2.2.tgz#4ca09a9092c88b73a7cdc5e8a01b507b0790a0cc"
@@ -4284,23 +4264,10 @@ walker@^1.0.8:
   dependencies:
     makeerror "1.0.12"
 
-webidl-conversions@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-3.0.1.tgz#24534275e2a7bc6be7bc86611cc16ae0a5654871"
-  integrity sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==
-
 webidl-conversions@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-4.0.2.tgz#a855980b1f0b6b359ba1d5d9fb39ae941faa63ad"
   integrity sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==
-
-whatwg-url@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/whatwg-url/-/whatwg-url-5.0.0.tgz#966454e8765462e37644d3626f6742ce8b70965d"
-  integrity sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==
-  dependencies:
-    tr46 "~0.0.3"
-    webidl-conversions "^3.0.0"
 
 whatwg-url@^7.0.0:
   version "7.1.0"
