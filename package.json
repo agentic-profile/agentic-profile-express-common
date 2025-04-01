@@ -1,6 +1,6 @@
 {
   "name": "@agentic-profile/express-common",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Common tools for Express based services",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -34,7 +34,6 @@
   "dependencies": {
     "@agentic-profile/auth": "^0.4.2",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
     "express": "^4.21.1",
     "morgan": "^1.10.0",
     "mysql2": "^3.12.0"

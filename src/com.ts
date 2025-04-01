@@ -15,7 +15,7 @@ import {
     VerificationMethod
 } from "did-resolver";
 
-import { loadProfile } from "./profile.js";
+import { loadProfileAndKeyring } from "./profile.js";
 
 
 export type SendAgenticPayloadParams = {
@@ -23,7 +23,7 @@ export type SendAgenticPayloadParams = {
     method?: "PUT" | "POST",
     payload: any,
     peerAgentUrl: string,       // service endpoint
-    profileDir: string,         // If not provided, then profile and keyring are
+    profileDir: string,
     type: string,
 }
 
@@ -31,11 +31,11 @@ export async function sendAgenticPayload({
     challenge,
     method,
     payload,
-    peerAgentUrl: url,   // e.g. `http://localhost:${port}/users/2/agent-chats`
-    profileDir,     // to load our profile and private keys
+    peerAgentUrl: url,  // e.g. `http://localhost:${port}/users/2/agent-chats`
+    profileDir,         // to load our profile and private keys
     type,
 }: SendAgenticPayloadParams ) {
-    const { profile, keyring } = await loadProfile( profileDir );
+    const { profile, keyring } = await loadProfileAndKeyring( profileDir );
     const agentDid = `${profile.id}#agent-${type}`;
     return signAndSendPayload({ agentDid, challenge, keyring, method, payload, profile, url });
 }
@@ -112,13 +112,50 @@ type SendAuthorizedPayloadParams = {
 }
 
 export async function sendAuthorizedPayload({ method = "PUT", url, authToken, payload }: SendAuthorizedPayloadParams) {
-    return fetch( url, {
+    return fetchJson( url, payload, {
         method,
         headers: {
             "Authorization": 'Agentic ' + authToken,
-            "Content-Type": "application/json",
-            "Accept": "application/json",
         },
-        body: JSON.stringify( payload )
     });
+}
+
+type FetchJsonOptions = {
+    method?: "GET" | "PUT" | "POST",
+    headers?: any
+}
+
+export async function fetchJson( url: string, payload: any, options: FetchJsonOptions = {} ) {
+    const config = {
+        method: "GET",
+        headers: {},
+        ...options
+    } as any;
+    if( !config.body && !!payload ) {
+        config.body = JSON.stringify( payload );
+        if( !hasHeader( config, "content-type") ) {
+            config.headers['Content-Type'] = "application/json";
+        }
+        if( config.method !== "PUT" && config.method !== "POST" )
+            config.method = "POST"
+    }
+    config.headers["Accept"] = "application/json";
+
+    const response = await fetch( url, config );
+    if( !response.ok )
+        throw new Error(`Failed to fetch ${url} - ${response.status} ${response.statusText}`)
+
+    const data = await response.json();
+    return { data, response };
+}
+
+function hasHeader( config: any, type: string ) {
+    const headers = config.headers;
+    if( !headers )
+        return false;
+    for( const key in headers )
+        if( key.toLowerCase() === type )
+            return true;
+
+    return false;
 }
