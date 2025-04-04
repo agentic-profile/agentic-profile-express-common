@@ -33,6 +33,7 @@
   "homepage": "https://github.com/agentic-profile/agentic-profile-express-common#readme",
   "dependencies": {
     "@agentic-profile/auth": "^0.4.2",
+    "@agentic-profile/common": "^0.4.2",
     "cors": "^2.8.5",
     "express": "^4.21.1",
     "morgan": "^1.10.0",

@@ -10,7 +10,8 @@ import {
 } from "@agentic-profile/auth";
 import {
     agentHooks,
-    CommonHooks
+    CommonHooks,
+    prettyJSON
 } from "@agentic-profile/common";
 
 
@@ -30,6 +31,6 @@ export async function resolveAgentSession( req: Request, res: Response ): Promis
     const challenge = await createChallenge( storage() );
     res.status(401)
         .set('Content-Type', 'application/json')
-        .send( JSON.stringify(challenge, null, 4) );
+        .send( prettyJSON(challenge) );
     return null;  
 }

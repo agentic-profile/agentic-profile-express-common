@@ -2,6 +2,7 @@ import {
     Base64Url,
     JWKSet,
     OpaqueChallenge,
+    sendAuthorizedPayload,
     signChallenge,
     util as authUtil
 } from "@agentic-profile/auth";
@@ -11,9 +12,7 @@ import {
     DID,
     FragmentID
 } from "@agentic-profile/common";
-import {
-    VerificationMethod
-} from "did-resolver";
+import { VerificationMethod } from "did-resolver";
 
 import { loadProfileAndKeyring } from "./profile.js";
 
@@ -36,6 +35,11 @@ export async function sendAgenticPayload({
     type,
 }: SendAgenticPayloadParams ) {
     const { profile, keyring } = await loadProfileAndKeyring( profileDir );
+    if( !profile )
+        throw new Error(`Failed to load agentic profile from ${profileDir}/did.json`);
+    if( !keyring )
+        throw new Error(`Failed to load agentic keyring from ${profileDir}/keyring.json`);
+    
     const agentDid = `${profile.id}#agent-${type}`;
     return signAndSendPayload({ agentDid, challenge, keyring, method, payload, profile, url });
 }
@@ -102,60 +106,4 @@ function resolveVerification( agentDid: DID, profile: AgenticProfile, keyring: J
 
 function resolvePrivateJwk( keyring: JWKSet[], b64uPublicKey: Base64Url ) {
     return keyring.find(e=>e.b64uPublicKey===b64uPublicKey)?.privateJwk;
-}
-
-type SendAuthorizedPayloadParams = {
-    authToken: string,
-    method?: "PUT" | "POST",
-    payload: any,
-    url: string
-}
-
-export async function sendAuthorizedPayload({ method = "PUT", url, authToken, payload }: SendAuthorizedPayloadParams) {
-    return fetchJson( url, payload, {
-        method,
-        headers: {
-            "Authorization": 'Agentic ' + authToken,
-        },
-    });
-}
-
-type FetchJsonOptions = {
-    method?: "GET" | "PUT" | "POST",
-    headers?: any
-}
-
-export async function fetchJson( url: string, payload: any, options: FetchJsonOptions = {} ) {
-    const config = {
-        method: "GET",
-        headers: {},
-        ...options
-    } as any;
-    if( !config.body && !!payload ) {
-        config.body = JSON.stringify( payload );
-        if( !hasHeader( config, "content-type") ) {
-            config.headers['Content-Type'] = "application/json";
-        }
-        if( config.method !== "PUT" && config.method !== "POST" )
-            config.method = "POST"
-    }
-    config.headers["Accept"] = "application/json";
-
-    const response = await fetch( url, config );
-    if( !response.ok )
-        throw new Error(`Failed to fetch ${url} - ${response.status} ${response.statusText}`)
-
-    const data = await response.json();
-    return { data, response };
-}
-
-function hasHeader( config: any, type: string ) {
-    const headers = config.headers;
-    if( !headers )
-        return false;
-    for( const key in headers )
-        if( key.toLowerCase() === type )
-            return true;
-
-    return false;
 }

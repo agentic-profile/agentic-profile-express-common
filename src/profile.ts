@@ -1,13 +1,8 @@
-import { VerificationMethod } from "did-resolver";
 import {
     AgenticProfile,
-    AgentService,
     prettyJSON
 } from "@agentic-profile/common";
-import {
-    createEdDsaJwk,
-    JWKSet
-} from "@agentic-profile/auth";
+import { JWKSet } from "@agentic-profile/auth";
 
 import { join } from "path";
 import {
@@ -17,70 +12,6 @@ import {
     writeFile
 } from "fs/promises";
 
-
-type ProfileTemplate = {
-    name?: string
-}
-
-type ServiceTemplate = {
-    type: string,
-    url: string
-}
-
-type Params = {
-    template?: ProfileTemplate,
-    services: ServiceTemplate[]
-}
-
-export async function createAgenticProfile({ template = {}, services }: Params ) {
-
-    const keyring: JWKSet[] = [];
-    const service: AgentService[] = [];
-    for( const { type, url } of services ) {
-        const jwk = await createEdDsaJwk();
-        keyring.push( jwk );
-
-        const verificationMethod = {
-            id: `#agent-${type}-key-0`,
-            type: "JsonWebKey2020",
-            publicKeyJwk: jwk.publicJwk
-        } as VerificationMethod;
-
-        service.push({
-            name: `${type} agent`,
-            id: `#agent-${type}`,
-            type: `Agentic/${type}`,
-            serviceEndpoint: url,
-            capabilityInvocation: [
-                verificationMethod
-            ] 
-        });
-    };
-
-    const generalJwk = await createEdDsaJwk();
-    keyring.push( generalJwk );
-
-    const profile = {
-        "@context": [
-            "https://www.w3.org/ns/did/v1",
-            "https://w3id.org/security/suites/jws-2020/v1",
-            "https://iamagentic.org/ns/agentic-profile/v1"
-        ],
-        id: "TBD",
-        //name: "Atlas",
-        ...template,
-        verificationMethod: [
-            {
-                id: `#general-key-0`,
-                type: "JsonWebKey2020",
-                publicKeyJwk: generalJwk.publicJwk
-            } as VerificationMethod
-        ],
-        service
-    } as AgenticProfile;
-
-    return { profile, keyring };
-}
 
 type SaveProfileParams = {
     dir: string,
@@ -119,45 +50,22 @@ export async function loadProfileAndKeyring( dir: string ) {
 }
 
 export async function loadProfile( dir: string ) {
-    return loadJson( dir, "did.json" );
+    return loadJson<AgenticProfile>( dir, "did.json" );
 }
 
 export async function loadKeyring( dir: string ) {
-    return loadJson( dir, "keyring.json" );
+    return loadJson<JWKSet[]>( dir, "keyring.json" );
 }
 
-export async function loadJson( dir: string, filename: string ) {
+export async function loadJson<T>( dir: string, filename: string ): Promise<T | undefined> {
     const path = join( dir, filename );
     if( await fileExists( path ) !== true )
         return undefined;
 
     const buffer = await readFile( path, "utf-8" );
-    return JSON.parse( buffer );
+    return JSON.parse( buffer ) as T;
 }
 
-export function resolvePublicKey( profile: AgenticProfile ) {
-    const found = profile.verificationMethod?.find(isGeneralVerificationMethod);
-    if( !found )
-        throw new Error( "Failed to find general verification method from " + profile.verificationMethod );
-    if( !!found.publicKeyJwk?.x )
-        return found.publicKeyJwk.x;
-    else 
-        throw new Error( "Verification method missing missing public key: " + found );
-}
-
-function isGeneralVerificationMethod( method: VerificationMethod ) {
-    const { id, type, publicKeyJwk } = method;
-    if( !id )
-        return false;
-    if( id.startsWith('#agent') )
-        return false;
-    if( type !== "JsonWebKey2020" )
-        return false;
-    if( !publicKeyJwk )
-        return false;
-
-    return true;
-}
 
 //
 // General util

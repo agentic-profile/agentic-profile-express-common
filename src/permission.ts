@@ -2,6 +2,8 @@ import { Request } from "express";
 
 export function isAdmin( req: Request ) {
     const admin_token = process.env.ADMIN_TOKEN;
+    if( !admin_token )
+        return false;   // not set up
 
     // auth token as a query parameter?
     if( req.query.auth === admin_token )
