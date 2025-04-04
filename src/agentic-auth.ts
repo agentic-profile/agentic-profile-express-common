@@ -11,7 +11,7 @@ import {
 import {
     agentHooks,
     CommonHooks,
-    prettyJSON
+    prettyJson
 } from "@agentic-profile/common";
 
 
@@ -31,6 +31,6 @@ export async function resolveAgentSession( req: Request, res: Response ): Promis
     const challenge = await createChallenge( storage() );
     res.status(401)
         .set('Content-Type', 'application/json')
-        .send( prettyJSON(challenge) );
+        .send( prettyJson(challenge) );
     return null;  
 }

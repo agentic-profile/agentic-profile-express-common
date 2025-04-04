@@ -1,10 +1,10 @@
 import { Request } from "express";
-import { prettyJSON } from "@agentic-profile/common";
+import { prettyJson } from "@agentic-profile/common";
 
 
 export function log( req: Request, failure: any, err?: any ) {
     const auth = (req as any).auth;
-    console.error( 'ERROR:', prettyJSON({
+    console.error( 'ERROR:', prettyJson({
         url: req.originalUrl,
         headers: req.headers,
         auth,
