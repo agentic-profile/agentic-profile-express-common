@@ -3,11 +3,6 @@ import {
     JWKSet,
     prettyJson
 } from "@agentic-profile/common";
-import {
-    AgenticChallenge,
-    resolveVerificationKey,
-    signChallenge
-} from "@agentic-profile/auth";
 
 import { join } from "path";
 import {
@@ -69,30 +64,6 @@ export async function loadJson<T>( dir: string, filename: string ): Promise<T | 
 
     const buffer = await readFile( path, "utf-8" );
     return JSON.parse( buffer ) as T;
-}
-
-//
-// Authentication Helpers
-//
-
-type GenerateAuthTokenParams = {
-    agentSubtype: string,
-    agenticChallenge: AgenticChallenge,
-    profileDir: string
-}
-
-export async function generateAuthToken({ agentSubtype, agenticChallenge, profileDir }: GenerateAuthTokenParams) {
-    const { profile, keyring } = await loadProfileAndKeyring( profileDir );
-    if( !profile )
-        throw new Error(`Failed to load agentic profile from ${profileDir}/did.json`);
-    if( !keyring )
-        throw new Error(`Failed to load agentic keyring from ${profileDir}/keyring.json`);
-    
-    const agentDid = `${profile.id}#agent-${agentSubtype}`;
-    const { verificationId, privateJwk } = resolveVerificationKey( agentDid, profile, keyring );
-    const attestation = { agentDid, verificationId };
-    const { challenge } = agenticChallenge;
-    return await signChallenge({ challenge, attestation, privateJwk });
 }
 
 
