@@ -57,10 +57,10 @@ export async function loadKeyring( dir: string ) {
     return loadJson<JWKSet[]>( dir, "keyring.json" );
 }
 
-export async function loadJson<T>( dir: string, filename: string ): Promise<T | undefined> {
+export async function loadJson<T>( dir: string, filename: string ): Promise<T> {
     const path = join( dir, filename );
     if( await fileExists( path ) !== true )
-        return undefined;
+        throw new Error(`Failed to load ${path} - file not found`);
 
     const buffer = await readFile( path, "utf-8" );
     return JSON.parse( buffer ) as T;
