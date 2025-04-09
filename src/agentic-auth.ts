@@ -16,7 +16,7 @@ import {
 
 
 function storage() {
-    return agentHooks<CommonHooks>().storage as ClientAgentSessionStorage;
+    return agentHooks<CommonHooks>().storage as unknown as ClientAgentSessionStorage;
 }
 
 // returns:
