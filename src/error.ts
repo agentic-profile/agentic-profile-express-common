@@ -3,8 +3,9 @@ import {
     Response
 } from "express";
 import { inherits } from "util";
+import log from "loglevel";
+import { prettyJson } from "@agentic-profile/common";
 
-import { log } from "./log.js";
 
 function errorCodeToStatusCode( code: any ) {
     if( !code || !Array.isArray(code) )
@@ -28,8 +29,20 @@ export function signalError( req: Request, res: Response, err:any ) {
         message: message ?? name,
         details: stack?.split(/\n/).map((e:string)=>e.trim()).slice(0,4)
     }
-    log(req,failure,err);
+    logFailure( req,failure, err );
     res.status( errorCodeToStatusCode(code) ).json({ failure });
+}
+
+export function logFailure( req: Request, failure: any, err?: any ) {
+    const auth = (req as any).auth;
+    log.error( 'ERROR:', prettyJson({
+        url: req.originalUrl,
+        headers: req.headers,
+        auth,
+        body: req.body,
+        failure,
+        errorMessage: err?.message
+    }) );
 }
 
 export class ServerError extends Error {
