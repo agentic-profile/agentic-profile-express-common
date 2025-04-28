@@ -27,7 +27,7 @@ export function signalError( req: Request, res: Response, err:any ) {
     const failure = {
         code,
         message: message ?? name,
-        details: stack?.split(/\n/).map((e:string)=>e.trim()).slice(0,4)
+        details: stack?.split(/\n/).map((e:string)=>e.trim()).slice(0,7)
     }
     logFailure( req,failure, err );
     res.status( errorCodeToStatusCode(code) ).json({ failure });
