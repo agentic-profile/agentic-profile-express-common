@@ -1,12 +1,12 @@
 import { parseArgs as nodeParseArgs } from "util";
 import { sep } from "path";
 
-interface ArgvOption {
+export interface ArgvOption {
     type: "string" | "boolean";
     short: string;
 }
 
-type ArgvOptions = {
+export type ArgvOptions = {
     [key: string]: ArgvOption;
 };
 
