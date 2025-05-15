@@ -3,8 +3,7 @@ export default {
     	[
             '@babel/preset-env', 
             {
-                targets: { node: 'current' },
-                modules: 'commonjs'
+                targets: { node: 'current' }
             }
         ],
     	'@babel/preset-typescript',

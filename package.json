@@ -1,12 +1,12 @@
 {
   "name": "@agentic-profile/express-common",
-  "version": "0.4.14",
-  "description": "Common tools for Express based services",
+  "version": "0.5.0",
+  "description": "Common tools for Express based services that use the Agentic Profile",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "prepare": "tsup",
-    "dev": "yarn build; node --inspect index.js",
+    "dev": "tsup; node --inspect index.js",
     "build": "tsup",
     "test": "jest"
   },
@@ -18,6 +18,7 @@
     "dist",
     "example.env",
     "index.js",
+    "LICENSE",
     "README.md"
   ],
   "type": "module",
@@ -26,13 +27,13 @@
     "url": "git+https://github.com/agentic-profile/agentic-profile-express-common.git"
   },
   "author": "Mike Prince",
-  "license": "MIT",
+  "license": "Apache-2",
   "bugs": {
     "url": "https://github.com/agentic-profile/agentic-profile-express-common/issues"
   },
   "homepage": "https://github.com/agentic-profile/agentic-profile-express-common#readme",
   "dependencies": {
-    "@agentic-profile/auth": "^0.4.10",
+    "@agentic-profile/auth": "^0.5.0",
     "cors": "^2.8.5",
     "express": "^4.21.1",
     "morgan": "^1.10.0"
@@ -53,6 +54,5 @@
     "ts-node": "^10.9.2",
     "tsup": "^8.4.0",
     "typescript": "^5.8.2"
-  },
-  "packageManager": "yarn@4.8.1"
+  }
 }

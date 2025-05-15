@@ -1,8 +1,8 @@
 import {
     AgenticProfile,
     JWKSet,
-    prettyJson
-} from "@agentic-profile/common";
+} from "@agentic-profile/common/schema";
+import { prettyJson } from "@agentic-profile/common";
 
 import { join } from "path";
 import {
