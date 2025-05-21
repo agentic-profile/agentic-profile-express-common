@@ -2,7 +2,7 @@ import express from "express"
 import morgan from "morgan"
 import cors from "cors"
 
-const app = express()
+const app: express.Application = express()
 app.use( morgan("combined") )
 app.use( cors() )
 app.options( "*", cors() )

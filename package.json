@@ -1,12 +1,11 @@
 {
   "name": "@agentic-profile/express-common",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Common tools for Express based services that use the Agentic Profile",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "prepare": "tsup",
-    "dev": "tsup; node --inspect index.js",
     "build": "tsup",
     "test": "jest"
   },
@@ -16,8 +15,6 @@
   },
   "files": [
     "dist",
-    "example.env",
-    "index.js",
     "LICENSE",
     "README.md"
   ],
@@ -34,8 +31,11 @@
   "homepage": "https://github.com/agentic-profile/agentic-profile-express-common#readme",
   "dependencies": {
     "@agentic-profile/auth": "^0.5.0",
+    "@agentic-profile/common": "^0.5.1",
     "cors": "^2.8.5",
+    "did-resolver": "^4.1.0",
     "express": "^4.21.1",
+    "loglevel": "^1.9.2",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
@@ -54,5 +54,6 @@
     "ts-node": "^10.9.2",
     "tsup": "^8.4.0",
     "typescript": "^5.8.2"
-  }
+  },
+  "packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977"
 }
