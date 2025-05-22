@@ -5,6 +5,7 @@
         "moduleResolution": "nodenext",
         "outDir": "dist",
         "esModuleInterop": true,
+        "isolatedModules": true,
         "forceConsistentCasingInFileNames": true,
         "strict": true,
         "noUnusedLocals": true,
