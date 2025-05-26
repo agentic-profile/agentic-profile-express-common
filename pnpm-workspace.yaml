@@ -1,5 +1,2 @@
 onlyBuiltDependencies:
   - esbuild
-overrides:
-  '@agentic-profile/auth': link:../agentic-profile-auth
-  '@agentic-profile/common': link:../agentic-profile-common
