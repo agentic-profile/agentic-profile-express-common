@@ -4,16 +4,20 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@agentic-profile/auth': link:../agentic-profile-auth
+  '@agentic-profile/common': link:../agentic-profile-common
+
 importers:
 
   .:
     dependencies:
       '@agentic-profile/auth':
-        specifier: ^0.5.1
-        version: 0.5.1
+        specifier: link:../agentic-profile-auth
+        version: link:../agentic-profile-auth
       '@agentic-profile/common':
-        specifier: ^0.5.1
-        version: 0.5.1
+        specifier: link:../agentic-profile-common
+        version: link:../agentic-profile-common
       cors:
         specifier: ^2.8.5
         version: 2.8.5
@@ -77,12 +81,6 @@ importers:
         version: 5.8.3
 
 packages:
-
-  '@agentic-profile/auth@0.5.1':
-    resolution: {integrity: sha512-mGrz0CVevETVRkNFu7OpiFwS0tfChtIhFjtNDCuLfzT5pxeRvF8jRJFc6nn1HFxs0XBX5uoZyxdTSRiyssG+ug==}
-
-  '@agentic-profile/common@0.5.1':
-    resolution: {integrity: sha512-9/AM7cN4Xx3XvLyR5+vir17PYhQ89q/E09tkC7Df94eUpSqlA+cze7V6ikJZcxBcEaG1v1i7UhSUg75lwEnwMg==}
 
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
@@ -921,9 +919,6 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
-
-  '@noble/ed25519@2.2.3':
-    resolution: {integrity: sha512-iHV8eI2mRcUmOx159QNrU8vTpQ/Xm70yJ2cTk3Trc86++02usfqFoNl6x0p3JN81ZDS/1gx6xiK0OwrgqCT43g==}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -2600,18 +2595,6 @@ packages:
 
 snapshots:
 
-  '@agentic-profile/auth@0.5.1':
-    dependencies:
-      '@agentic-profile/common': 0.5.1
-      '@noble/ed25519': 2.2.3
-      did-resolver: 4.1.0
-      loglevel: 1.9.2
-
-  '@agentic-profile/common@0.5.1':
-    dependencies:
-      did-resolver: 4.1.0
-      loglevel: 1.9.2
-
   '@ampproject/remapping@2.3.0':
     dependencies:
       '@jridgewell/gen-mapping': 0.3.8
@@ -3637,8 +3620,6 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
-
-  '@noble/ed25519@2.2.3': {}
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
