@@ -23,6 +23,7 @@ function errorCodeToStatusCode( code: any ) {
 
 // Use this method when we have an Error object
 export function signalError( req: Request, res: Response, err:any ) {
+    console.log( 'signalError', err );
     const { code, name, message, stack } = err;
     const failure = {
         code,
