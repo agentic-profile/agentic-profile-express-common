@@ -24,14 +24,23 @@ function errorCodeToStatusCode( code: any ) {
 // Use this method when we have an Error object
 export function signalError( req: Request, res: Response, err:any ) {
     console.log( 'signalError', err );
-    const { code, name, message, stack } = err;
+    const { code, details, name, message, stack, statusCode } = err;
+    
+    // Handle custom error types that have a statusCode property (like ScrapingDogAPIError)
+    let httpStatusCode: number;
+    if (statusCode && typeof statusCode === 'number') {
+        httpStatusCode = statusCode;
+    } else {
+        httpStatusCode = errorCodeToStatusCode(code);
+    }
+    
     const failure = {
         code,
         message: message ?? name,
-        details: stack?.split(/\n/).map((e:string)=>e.trim()).slice(0,7)
+        details: details ?? stack?.split(/\n/).map((e:string)=>e.trim()).slice(0,7)
     }
     logFailure( req,failure, err );
-    res.status( errorCodeToStatusCode(code) ).json({ failure });
+    res.status( httpStatusCode ).json({ failure });
 }
 
 export function logFailure( req: Request, failure: any, err?: any ) {

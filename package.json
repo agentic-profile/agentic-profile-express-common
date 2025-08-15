@@ -1,6 +1,6 @@
 {
   "name": "@agentic-profile/express-common",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Common tools for Express based services that use the Agentic Profile",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -44,7 +44,7 @@
     "@babel/preset-typescript": "^7.27.0",
     "@types/basic-auth": "^1.1.8",
     "@types/cors": "^2.8.17",
-    "@types/express": "^5.0.1",
+    "@types/express": "^4.17.21",
     "@types/jest": "^29.5.14",
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.14.0",
